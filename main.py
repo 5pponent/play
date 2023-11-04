@@ -1,7 +1,7 @@
-import io
+import io, uvicorn
 
 from fastapi import FastAPI, Request, status
-from fastapi.staticfiles import StaticFiles
+# from fastapi.staticfiles import StaticFiles
 from fastapi.responses import StreamingResponse, JSONResponse
 from fastapi.templating import Jinja2Templates
 from pytube import YouTube
@@ -37,3 +37,7 @@ async def get_file(request: Request, link: str):
         media_type="audio/mpeg",
         content=buffer,
     )
+
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8000, reload=True)
